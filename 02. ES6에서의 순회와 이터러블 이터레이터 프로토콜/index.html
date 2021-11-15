@@ -59,7 +59,7 @@
 <script>
   const iterable = {
     [Symbol.iterator]() {
-      let i = 3;
+      let i = 5;
       return {
         next() {
           return i == 0 ? {done: true} : {value: i--, done: false};
@@ -70,22 +70,19 @@
       }
     }
   };
-  let iterator = iterable[Symbol.iterator]();
-  iterator.next();
-  iterator.next();
-  // log(iterator.next());
-  // log(iterator.next());
-  // log(iterator.next());
-  for (const a of iterator) log(a);
-
-  // const arr2 = [1, 2, 3];
-  // let iter2 = arr2[Symbol.iterator]();
-  // iter2.next();
-  // log(iter2[Symbol.iterator]() == iter2);
-  // for (const a of iter2) log(a);
+//   let iterator = iterable[Symbol.iterator]();
+//   iterator.next();
+//   iterator.next();
+//   for (const a of iterator) log(a);
+//   log(iterator == iterator[Symbol.iterator]());
+//   const arr2 = [1, 2, 3];
+//   let iter2 = arr2[Symbol.iterator]();
+//   log(iter2[Symbol.iterator]() == iter2);
+//   for (const a of iter2) log(a);
 
   for (const a of document.querySelectorAll('*')) log(a);
   const all = document.querySelectorAll('*');
+  log(all);
   let iter3 = all[Symbol.iterator]();
   log(iter3.next());
   log(iter3.next());
@@ -98,5 +95,5 @@
   console.clear();
   const a = [1, 2];
   // a[Symbol.iterator] = null;
-  log([...a, ...arr, ...set, ...map.keys()]);
+  log([...a, ...arr]);
 </script>
