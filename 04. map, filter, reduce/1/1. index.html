@@ -100,40 +100,33 @@
 	log(filter(p => p % 2, function* (){
 		for (const a of [1, 2, 3, 4, 5]) yield(a)
 	}()));
+
+	console.clear();
 </script>
 
 # reduce
 
-<!-- <script>
+<script>
 	const nums = [1, 2, 3, 4, 5];
 
 	let total = 0;
-	for (const n of nums) {
-	total = total + n;
-	}
+	for (n of nums) total += n;
 	log(total);
 
 	const reduce = (f, acc, iter) => {
-	if (!iter) {
-		iter = acc[Symbol.iterator]();
-		acc = iter.next().value;
+		if (!iter) {
+			iter = acc[Symbol.iterator]();
+			acc = iter.next().value;
+		}
+		for (const a of iter) {
+			acc = f(acc, a)
+		}
+		return acc;
 	}
-	for (const a of iter) {
-		acc = f(acc, a);
-	}
-	return acc;
-	};
-
 	const add = (a, b) => a + b;
+	log(reduce(add, 0, [1, 2, 3, 4, 5])); // 15
 
-	log(reduce(add, 0, [1, 2, 3, 4, 5]));
-	// 15
-
-	log(add(add(add(add(add(0, 1), 2), 3), 4), 5));
-	// 15
-
-	log(reduce(add, [1, 2, 3, 4, 5]));
-	// 15
+	log(reduce(add, [1, 2, 3, 4, 5])); // 15
 
 	console.clear();
 </script>
@@ -144,4 +137,4 @@
 		(total_price, product) => total_price + product.price,
 		0,
 		products));
-</script> -->
+</script>
